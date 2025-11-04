@@ -1,1 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Leader Summit 2026 | SMA Al-Bunyan</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --card: rgba(15, 23, 42, 0.6);
+      --shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.12), transparent 45%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.75);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 0.4rem 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.2rem;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), #818cf8);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    main {
+      margin-top: 80px;
+    }
+
+    section {
+      padding: 6rem 1.5rem;
+      position: relative;
+    }
+
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 3rem;
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: grid;
+      align-items: center;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 40%);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h1 span {
+      display: block;
+      background: linear-gradient(120deg, var(--accent), #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 32rem;
+      font-size: 1.1rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: transparent;
+      color: var(--text);
+      padding: 0.85rem 1.9rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, var(--accent), #818cf8);
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 35px rgba(56, 189, 248, 0.18);
+    }
+
+    .parallax {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parallax::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center calc(var(--offset, 0px));
+      opacity: 0.25;
+      transform: translateZ(0);
+      z-index: -1;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      border-radius: 20px;
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, border 0.3s ease;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(120deg, rgba(56, 189, 248, 0.12), rgba(129, 140, 248, 0.12));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 2rem;
+      padding-left: 1.5rem;
+      border-left: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.95rem;
+      top: 0.4rem;
+      width: 12px;
+      height: 12px;
+      background: linear-gradient(120deg, var(--accent), #818cf8);
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.15);
+    }
+
+    .countdown {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .countdown .unit {
+      min-width: 110px;
+      background: rgba(15, 23, 42, 0.65);
+      border-radius: 16px;
+      padding: 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      text-align: center;
+      box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.1);
+    }
+
+    .countdown .value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .countdown .label {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      filter: saturate(0.85) brightness(0.95);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .gallery img:hover {
+      transform: translateY(-8px) scale(1.03);
+      filter: saturate(1.05) brightness(1.05);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      padding: 1.2rem 0;
+      cursor: pointer;
+    }
+
+    .faq-item h4 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.05rem;
+    }
+
+    .faq-item p {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      color: var(--muted);
+      margin-top: 0.7rem;
+    }
+
+    .faq-item.active p {
+      max-height: 200px;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(56, 189, 248, 0));
+      border-radius: 28px;
+      padding: 4rem 2rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .cta h2 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .floating-badge {
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 16px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      box-shadow: 0 14px 40px rgba(2, 132, 199, 0.25);
+      z-index: 99;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .floating-badge.hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+
+    .floating-badge span {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .floating-badge strong {
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .parallax[data-bg="network"]::before {
+      background-image: url("https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    .parallax[data-bg="auditorium"]::before {
+      background-image: url("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    .parallax[data-bg="city"]::before {
+      background-image: url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      section {
+        padding: 4.5rem 1.25rem;
+      }
+
+      .floating-badge {
+        right: 1rem;
+        left: 1rem;
+        bottom: 1rem;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Next Leader Summit 2026</div>
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">Beranda</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#competitions">Kompetisi</a></li>
+        <li><a href="#register">Daftar</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero parallax" data-bg="network" data-speed="0.25">
+      <div class="content-wrapper">
+        <div>
+          <span class="tag">SMA Al-Bunyan</span>
+          <h1>Next Leader Summit <span>2026</span></h1>
+          <p>Gerakan kolaboratif yang mempertemukan para pelajar visioner untuk merancang terobosan bagi masa depan sekolah dan komunitas. Gabung dalam kompetisi, forum inspiratif, dan laboratorium ide yang dirancang khusus untuk generasi digital.</p>
+          <div class="hero-cta">
+            <a class="btn primary" href="#register">Daftar Sekarang</a>
+            <a class="btn" href="#agenda">Jelajahi Agenda</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="content-wrapper">
+        <div class="grid grid-2">
+          <div>
+            <h2 class="section-title">Mengasah Pemimpin Masa Depan</h2>
+            <p class="muted">Next Leader Summit 2026 adalah rangkaian program selama tiga hari yang menghadirkan pembicara, inovator, dan alumni SMA Al-Bunyan yang siap berbagi strategi kepemimpinan adaptif. Dari desain solusi hingga peluncuran kampanye sosial, summit ini mendorong peserta untuk menjadi penggerak perubahan.</p>
+          </div>
+          <div class="card">
+            <h3>Highlight Summit</h3>
+            <ul class="muted">
+              <li>• Forum &amp; diskusi lintas jurusan</li>
+              <li>• Showcase inovasi siswa</li>
+              <li>• Mentoring eksklusif dengan alumni</li>
+              <li>• Networking dengan partner industri</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="countdown" class="parallax" data-bg="auditorium" data-speed="0.18">
+      <div class="content-wrapper">
+        <div>
+          <span class="tag">Hitung Mundur</span>
+          <h2 class="section-title">Summit dimulai dalam</h2>
+        </div>
+        <div class="countdown" id="countdownTimer">
+          <div class="unit">
+            <div class="value" data-value="days">00</div>
+            <div class="label">Hari</div>
+          </div>
+          <div class="unit">
+            <div class="value" data-value="hours">00</div>
+            <div class="label">Jam</div>
+          </div>
+          <div class="unit">
+            <div class="value" data-value="minutes">00</div>
+            <div class="label">Menit</div>
+          </div>
+          <div class="unit">
+            <div class="value" data-value="seconds">00</div>
+            <div class="label">Detik</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="speakers">
+      <div class="content-wrapper">
+        <span class="tag">Pembicara Utama</span>
+        <h2 class="section-title">Suara Visioner</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Nadia Pramesti</h3>
+            <p class="muted">Lead Strategist di GenZ Lab. Alumni 2015 yang kini memimpin product sprint untuk inisiatif AI pendidikan.</p>
+          </div>
+          <div class="card">
+            <h3>Rafael Aditya</h3>
+            <p class="muted">Co-founder Impact Spark. Mengembangkan platform crowdfunding sosial berbasis blockchain ramah siswa.</p>
+          </div>
+          <div class="card">
+            <h3>Aisha Noor</h3>
+            <p class="muted">Creative Director Nebula Studio. Mengkombinasikan desain immersive dan kampanye digital untuk brand youth culture.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="agenda">
+      <div class="content-wrapper">
+        <span class="tag">Agenda 3 Hari</span>
+        <h2 class="section-title">Jelajahi Pengalaman Summit</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Hari 1 · Future Forum</h3>
+            <p class="muted">Keynote, immersive panel, dan sesi pengenalan challenge untuk mengaktifkan mode eksplorasi.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Hari 2 · Design Sprint</h3>
+            <p class="muted">Workshop intensif, rapid prototyping, dan mentoring startup untuk menguji ide dengan cepat.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Hari 3 · Launch Pad</h3>
+            <p class="muted">Pitch day, awarding, dan signing ceremony dengan partner komunitas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workshops" class="parallax" data-bg="city" data-speed="0.15">
+      <div class="content-wrapper">
+        <span class="tag">Lab Ide</span>
+        <h2 class="section-title">Workshop Pilihan</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Creative Intelligence Lab</h3>
+            <p class="muted">Menggabungkan design thinking dan AI generatif untuk menyusun kampanye sekolah yang relevan.</p>
+          </div>
+          <div class="card">
+            <h3>Sustainable Hack</h3>
+            <p class="muted">Memetakan tantangan lingkungan sekolah dan menerjemahkannya menjadi prototipe solusi hijau.</p>
+          </div>
+          <div class="card">
+            <h3>Community Branding</h3>
+            <p class="muted">Belajar storytelling digital dan produksi konten untuk memperluas jejaring Al-Bunyan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="competitions">
+      <div class="content-wrapper">
+        <span class="tag">Kompetisi Unggulan</span>
+        <h2 class="section-title">Arena Kolaborasi</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Visionary Pitch</h3>
+            <p class="muted">Tim mempresentasikan solusi berbasis teknologi untuk tantangan komunitas sekolah.</p>
+          </div>
+          <div class="card">
+            <h3>Digital Campaign Race</h3>
+            <p class="muted">Menciptakan kampanye media sosial berdampak menggunakan data dan narasi kreatif.</p>
+          </div>
+          <div class="card">
+            <h3>Impact Prototype</h3>
+            <p class="muted">Membangun prototipe fungsional dan memvalidasi pengguna dalam 36 jam.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="registration-flow">
+      <div class="content-wrapper">
+        <span class="tag">Alur Pendaftaran</span>
+        <h2 class="section-title">Mulai dalam 4 Langkah</h2>
+        <div class="grid grid-4">
+          <div class="card">
+            <h3>01 · Buat Tim</h3>
+            <p class="muted">Kumpulkan 3-5 teman sevisi dan pilih satu ketua tim.</p>
+          </div>
+          <div class="card">
+            <h3>02 · Submit Ide</h3>
+            <p class="muted">Unggah pitch deck awal yang menjelaskan problem dan solusi.</p>
+          </div>
+          <div class="card">
+            <h3>03 · Verifikasi</h3>
+            <p class="muted">Tim kami akan melakukan review dan mengirimkan surat konfirmasi.</p>
+          </div>
+          <div class="card">
+            <h3>04 · Kick-off</h3>
+            <p class="muted">Ikuti briefing virtual dan siap-siap untuk sesi onsite.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="register">
+      <div class="content-wrapper">
+        <div class="cta">
+          <span class="tag">Seat Terbatas</span>
+          <h2>Amankan tempatmu di Next Leader Summit 2026</h2>
+          <p class="muted">Gelombang pertama ditutup pada 31 Maret 2026. Daftar sekarang dan raih akses ke toolkit eksklusif sebelum acara.</p>
+          <div class="hero-cta" style="justify-content: center;">
+            <a class="btn primary" href="#contact">Hubungi Kami</a>
+            <a class="btn" href="https://example.com" target="_blank" rel="noopener">Unduh Panduan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="venue">
+      <div class="content-wrapper">
+        <span class="tag">Lokasi</span>
+        <h2 class="section-title">Arena Summit</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Auditorium Inovasi</h3>
+            <p class="muted">Ruang utama dengan layar imersif 360°, siap untuk sesi keynote dan awarding.</p>
+          </div>
+          <div class="card">
+            <h3>Studio Kolaborasi</h3>
+            <p class="muted">Zona breakout modular untuk workshop dan pengembangan prototipe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sponsors">
+      <div class="content-wrapper">
+        <span class="tag">Kolaborator</span>
+        <h2 class="section-title">Partner Strategis</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Future Lab</h3>
+            <p class="muted">Menyediakan perangkat IoT dan akses cloud untuk peserta.</p>
+          </div>
+          <div class="card">
+            <h3>EduSpark</h3>
+            <p class="muted">Program beasiswa dan sesi coaching karier eksklusif.</p>
+          </div>
+          <div class="card">
+            <h3>Pulse Media</h3>
+            <p class="muted">Liputan multimedia dan amplifikasi kampanye digital summit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <div class="content-wrapper">
+        <span class="tag">Apa Kata Alumni</span>
+        <h2 class="section-title">Cerita Dampak</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <p>“Summit ini memantik kepercayaan diri tim kami dan membuka akses ke kompetisi nasional.”</p>
+            <p class="muted">— Hana, Batch 2024</p>
+          </div>
+          <div class="card">
+            <p>“Mentor-mentor alumni sangat hands-on. Kami keluar dengan roadmap nyata untuk proyek sosial.”</p>
+            <p class="muted">— Fajar, Batch 2023</p>
+          </div>
+          <div class="card">
+            <p>“Kombinasi kompetisi dan workshop benar-benar mempersiapkan kami menghadapi tantangan kampus.”</p>
+            <p class="muted">— Kezia, Batch 2022</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="content-wrapper">
+        <span class="tag">FAQ</span>
+        <h2 class="section-title">Pertanyaan Umum</h2>
+        <div class="faq-item">
+          <h4>Siapa yang bisa ikut? <span>+</span></h4>
+          <p>Terbuka untuk seluruh siswa SMA Al-Bunyan kelas X-XII dengan minat pada kepemimpinan, inovasi, dan komunitas.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Apakah berbayar? <span>+</span></h4>
+          <p>Tidak ada biaya pendaftaran. Peserta terpilih akan mendapatkan paket materi dan konsumsi selama acara.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Bagaimana format tim? <span>+</span></h4>
+          <p>Setiap tim terdiri dari 3-5 orang dengan minimal satu siswa kelas XI atau XII sebagai mentor internal.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="content-wrapper">
+        <span class="tag">Galeri</span>
+        <h2 class="section-title">Momentum Summit</h2>
+        <div class="gallery">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Summit" />
+          <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=900&q=80" alt="Workshop" />
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Teamwork" />
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=900&q=80" alt="Discussion" />
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="content-wrapper">
+        <span class="tag">Kontak</span>
+        <h2 class="section-title">Terhubung dengan Tim Summit</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Hubungi Panitia</h3>
+            <p class="muted">Email: summit@albunyan.sch.id<br />WhatsApp: +62 812-3456-7890</p>
+          </div>
+          <div class="card">
+            <h3>Ikuti Update</h3>
+            <p class="muted">Instagram · TikTok · YouTube<br />@albunyannextleaders</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Next Leader Summit · SMA Al-Bunyan. Semua hak cipta dilindungi.
+  </footer>
+
+  <div class="floating-badge" id="floatingBadge">
+    <div>
+      <span>Next Leader Summit</span>
+      <strong>3-5 Juli 2026 · Auditorium SMA Al-Bunyan</strong>
+    </div>
+  </div>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('main section');
+    const observerOptions = { threshold: 0.35 };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute('id');
+        const navLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (navLink) {
+          if (entry.isIntersecting) {
+            navLinks.forEach((link) => link.classList.remove('active'));
+            navLink.classList.add('active');
+          }
+        }
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => {
+      sectionObserver.observe(section);
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    sections.forEach((section) => revealObserver.observe(section));
+
+    const parallaxSections = document.querySelectorAll('.parallax');
+
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.pageYOffset;
+      parallaxSections.forEach((section) => {
+        const speed = parseFloat(section.dataset.speed || '0.2');
+        section.style.setProperty('--offset', `${scrollPosition * speed}px`);
+      });
+      toggleBadge();
+    });
+
+    const countdownElements = document.querySelectorAll('#countdownTimer .value');
+    const eventDate = new Date('July 3, 2026 08:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      const days = Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)));
+      const hours = Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+      const minutes = Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+      const seconds = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
+
+      countdownElements.forEach((el) => {
+        const type = el.dataset.value;
+        const value = { days, hours, minutes, seconds }[type];
+        el.textContent = String(value).padStart(2, '0');
+      });
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+        const symbol = item.querySelector('span');
+        symbol.textContent = item.classList.contains('active') ? '−' : '+';
+      });
+    });
+
+    const floatingBadge = document.getElementById('floatingBadge');
+    function toggleBadge() {
+      if (window.scrollY > window.innerHeight * 0.6) {
+        floatingBadge.classList.add('hidden');
+      } else {
+        floatingBadge.classList.remove('hidden');
+      }
+    }
+
+    toggleBadge();
+  </script>
+</body>
+</html>
